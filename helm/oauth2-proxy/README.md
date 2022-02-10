@@ -78,6 +78,10 @@ For users who don't want downtime, you can perform these actions:
 - Add new labels to pods
 - Perform `helm upgrade`
 
+### To 6.0.0
+
+Version 6.0.0 bumps the version of the redis subchart from ~10.6.0 to ~16.4.0. You probably need to adjust your redis config. See [here](https://github.com/bitnami/charts/tree/master/bitnami/redis#upgrading) for detailed upgrade instructions. 
+
 ## Configuration
 
 The following table lists the configurable parameters of the oauth2-proxy chart and their default values.
@@ -106,6 +110,9 @@ Parameter | Description | Default
 `extraEnv` | key:value list of extra environment variables to give the binary | `[]`
 `extraVolumes` | list of extra volumes | `[]`
 `extraVolumeMounts` | list of extra volumeMounts | `[]`
+`hostAlias.enabled`  | provide extra ip:hostname alias for network name resolution.
+`hostAlias.ip`  | `ip` address `hostAliases.hostname` should resolve to.
+`hostAlias.hostname`  | `hostname` associated to `hostAliases.ip`.
 `htpasswdFile.enabled` | enable htpasswd-file option | `false`
 `htpasswdFile.entries` | list of [SHA encrypted user:passwords](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#command-line-options) | `{}`
 `htpasswdFile.existingSecret` | existing Kubernetes secret to use for OAuth2 htpasswd file | `""`
@@ -126,6 +133,7 @@ Parameter | Description | Default
 `livenessProbe.initialDelaySeconds` | number of seconds | 0
 `livenessProbe.timeoutSeconds` | number of seconds | 1
 `nodeSelector` | node labels for pod assignment | `{}`
+`deploymentAnnotations` | annotations to add to the deployment | `{}`
 `podAnnotations` | annotations to add to each pod | `{}`
 `podLabels` | additional labesl to add to each pod | `{}`
 `podDisruptionBudget.enabled`| Enabled creation of PodDisruptionBudget (only if replicaCount > 1) | true
